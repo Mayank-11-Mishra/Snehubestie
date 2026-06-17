@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Someone Very Special ❤️</title>
+
+<style>
+body{
+    margin:0;
+    font-family:Arial, sans-serif;
+    background:linear-gradient(135deg,#ffdde1,#ee9ca7);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+    text-align:center;
+    overflow:hidden;
+}
+
+.container{
+    background:white;
+    padding:30px;
+    border-radius:20px;
+    box-shadow:0 10px 25px rgba(0,0,0,.2);
+    max-width:500px;
+    width:90%;
+}
+
+h2{
+    color:#ff4d6d;
+}
+
+button{
+    padding:12px 25px;
+    margin:10px;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+    font-size:16px;
+}
+
+.yes{
+    background:#4CAF50;
+    color:white;
+}
+
+.no{
+    background:#f44336;
+    color:white;
+}
+
+#final{
+    display:none;
+}
+
+.heart{
+    position:absolute;
+    font-size:25px;
+    animation:fall 4s linear infinite;
+}
+
+@keyframes fall{
+    from{
+        transform:translateY(-100px);
+        opacity:1;
+    }
+    to{
+        transform:translateY(100vh);
+        opacity:0;
+    }
+}
+
+.message{
+    font-size:28px;
+    color:#ff3366;
+    font-weight:bold;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<div id="questionSection">
+    <h2 id="question"></h2>
+
+    <button class="yes" onclick="nextQuestion()">Yes ❤️</button>
+    <button class="no" onclick="nextQuestion()">No 💔</button>
+</div>
+
+<div id="final">
+    <h1>🎉✨🎆</h1>
+    <p class="message">
+        You are very precious to me ❤️<br><br>
+        Please don't leave me.<br><br>
+        I know I make mistakes, but losing you would hurt far more than any mistake I have ever made. 🌹
+    </p>
+</div>
+
+</div>
+
+<script>
+
+const questions = [
+"Can I have a chance to make things right?",
+"Do you still remember our happy moments together?",
+"Would you be willing to hear me out completely?",
+"Can I promise to do better and prove it through actions?",
+"Can we keep our friendship safe despite this rough patch?"
+];
+
+let current = 0;
+
+const q = document.getElementById("question");
+
+q.innerText = questions[current];
+
+function nextQuestion(){
+    current++;
+
+    if(current < questions.length){
+        q.innerText = questions[current];
+    }
+    else{
+        document.getElementById("questionSection").style.display="none";
+        document.getElementById("final").style.display="block";
+        launchCelebration();
+    }
+}
+
+function launchCelebration(){
+
+    for(let i=0;i<80;i++){
+
+        const heart=document.createElement("div");
+        heart.className="heart";
+        heart.innerHTML=Math.random()>0.5?"❤️":"🎉";
+
+        heart.style.left=Math.random()*100+"vw";
+        heart.style.animationDuration=(Math.random()*3+2)+"s";
+
+        document.body.appendChild(heart);
+
+        setTimeout(()=>{
+            heart.remove();
+        },5000);
+    }
+}
+
+</script>
+
+</body>
+</html>
